@@ -108,7 +108,7 @@ export default function Home() {
                       {message.role === "user" && (
                         <div className="relative">
                           <div
-                            className={`p-4 rounded-lg  bg-blue-500 text-white text-right`}
+                            className={`p-4 rounded-lg  bg-blue-500 text-white text-right`} /* ILISAN NI JASMIN ARI */
                             style={{ maxWidth: "70%" }}
                           >
                             <div>
