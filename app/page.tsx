@@ -49,15 +49,35 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-between h-screen p-4 bg-gray-100">
       <div
-        className="flex flex-col items-center w-full h-full overflow-hidden bg-white shadow-md rounded-lg"
+        className="grid grid-cols-2 h-full w-full bg-white shadow-md rounded-lg"
         style={{
-          backgroundImage: showChat
-            ? "url('/clinic.jpg')" 
-            : "url('/kani.png')", 
+          // No need for backgroundImage on the container here
           backgroundRepeat: "no-repeat",
-          backgroundSize: "cover", // Use cover for better scaling
+          backgroundSize: "cover",
+          backgroundPosition: showChat ? "center" : "right", // Center if showChat is true, right otherwise
+          backgroundImage: showChat ? "url('/clinic.jpg')" : "url('/kani.png')", // Show clinic.jpg if showChat is true, kani.png otherwise
         }}
       >
+        {/* Left Column - Clinic.jpg (but it will be centered when showChat is true) */}
+        <div
+          className="bg-cover"
+          style={{
+            backgroundImage: showChat ? "url('/clinic.jpg')" : "none", // Show only if showChat is true
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center", 
+          }}
+        ></div>
+
+        {/* Right Column - Kani.png (but it will be shown only if showChat is false) */}
+        <div
+          className="bg-cover"
+          style={{
+            backgroundImage: showChat ? "none" : "url('/kani.png')", // Show only if showChat is false
+            backgroundPosition: "right",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
+        
         <div
           ref={chatContainerRef}
           className="flex-grow w-full overflow-y-auto p-6"
@@ -91,15 +111,6 @@ export default function Home() {
               </button>
             </div>
           )}
-
-          {/* The new image div */}
-          <div className="absolute right-8 bottom-8">
-            <img
-              src="/kani.png" // IMAGE SA NURSE
-              alt="Cartoon Nurse"
-              className="w-40 h-40 rounded-2xl"
-            />
-          </div>
 
           {showChat && (
             <>
