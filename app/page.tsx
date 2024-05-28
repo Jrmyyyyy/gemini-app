@@ -52,8 +52,8 @@ export default function Home() {
         className="flex flex-col items-center w-full h-full overflow-hidden bg-white shadow-md rounded-lg"
         style={{
           backgroundImage: showChat
-            ? "url('/hehe.png')" // Change background to hehe.png when chat is active
-            : "url('/clinic.jpg')", // Default background
+            ? "url('/clinic.jpg')" 
+            : "url('/kani.png')", 
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover", // Use cover for better scaling
         }}
@@ -93,17 +93,12 @@ export default function Home() {
           )}
 
           {/* The new image div */}
-<<<<<<< Updated upstream
-          <div className="absolute right-8 bottom-8 flex items-center">
-            <img src="/kani.png" alt="Cartoon Nurse" className="w-100 h-100 rounded-2xl" />
-=======
           <div className="absolute right-8 bottom-8">
             <img
-              src="/cartoon-nurse.jpg.jpg"
+              src="/kani.png" // IMAGE SA NURSE
               alt="Cartoon Nurse"
               className="w-40 h-40 rounded-2xl"
             />
->>>>>>> Stashed changes
           </div>
 
           {showChat && (
