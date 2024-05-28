@@ -49,7 +49,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-between h-screen p-4 bg-gray-100">
-      <div className="flex flex-col items-center w-full h-full overflow-hidden bg-white shadow-md rounded-lg">
+      <div className="flex flex-col items-center w-full h-full overflow-hidden bg-white shadow-md rounded-lg" style={{ backgroundImage: `url('/clinic.jpg')`,backgroundRepeat: 'no-repeat', backgroundSize: '100%', }} >
         <div ref={chatContainerRef} className="flex-grow w-full overflow-y-auto p-6">
           {!showChat && (
             <div className="flex flex-col items-start w-full h-full justify-center">
@@ -93,7 +93,7 @@ export default function Home() {
         </div>
 
         {showChat && (
-          <div className="flex items-center w-full p-4 bg-white shadow-md rounded-t-lg">
+          <div className="flex items-center w-full p-4 shadow-md rounded-t-lg">
             <textarea
               className="flex-grow p-2 border border-gray-300 rounded-lg h-12 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={userInput}

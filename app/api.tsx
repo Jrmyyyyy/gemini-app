@@ -18,7 +18,7 @@ const runModel = async (userInput: string, History: { role: string; parts: { tex
     Profession: Naturopathic Doctor
     Clinic: Arte Clinic
 
-    (Note: Avoid using emoji in every response.)
+    (Note: DO NOT use emoji in every response.)
 
     Initial Step:
     - Ask the patient to choose between home/natural remedies or a medical consultation. 
