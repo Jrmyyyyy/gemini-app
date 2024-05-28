@@ -49,34 +49,15 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-between h-screen p-4 bg-gray-100">
       <div
-        className="grid grid-cols-2 h-full w-full bg-white shadow-md rounded-lg"
+        className="flex flex-col items-center w-full h-full overflow-hidden bg-white shadow-md rounded-lg"
         style={{
-          // No need for backgroundImage on the container here
+          backgroundImage: showChat
+            ? "url('/clinic.jpg')" 
+            : "url('/kani.png')", 
           backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: showChat ? "center" : "right", // Center if showChat is true, right otherwise
-          backgroundImage: showChat ? "url('/clinic.jpg')" : "url('/kani.png')", // Show clinic.jpg if showChat is true, kani.png otherwise
+          backgroundSize: "cover", 
         }}
       >
-        {/* Left Column - Clinic.jpg (but it will be centered when showChat is true) */}
-        <div
-          className="bg-cover"
-          style={{
-            backgroundImage: showChat ? "url('/clinic.jpg')" : "none", // Show only if showChat is true
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center", 
-          }}
-        ></div>
-
-        {/* Right Column - Kani.png (but it will be shown only if showChat is false) */}
-        <div
-          className="bg-cover"
-          style={{
-            backgroundImage: showChat ? "none" : "url('/kani.png')", // Show only if showChat is false
-            backgroundPosition: "right",
-            backgroundRepeat: "no-repeat",
-          }}
-        ></div>
         
         <div
           ref={chatContainerRef}
