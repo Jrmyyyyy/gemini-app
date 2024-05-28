@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { FaPaperPlane } from "react-icons/fa";
 import runModel from "../app/api";
+import React from "react";
 
 export default function Home() {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -48,40 +49,14 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-between h-screen p-4 bg-gray-100">
-      <div
-        className="flex flex-col items-center w-full h-full overflow-hidden bg-white shadow-md rounded-lg"
-        style={{
-          backgroundImage: showChat
-            ? "url('/clinic.jpg')" 
-            : "url('/kani.png')", 
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover", // Use cover for better scaling
-        }}
-      >
-        <div
-          ref={chatContainerRef}
-          className="flex-grow w-full overflow-y-auto p-6"
-        >
+      <div className="flex flex-col items-center w-full h-full overflow-hidden bg-white shadow-md rounded-lg" style={{ backgroundImage: `url('/clinic.jpg')`,backgroundRepeat: 'no-repeat', backgroundSize: '100%', }} >
+        <div ref={chatContainerRef} className="flex-grow w-full overflow-y-auto p-6">
           {!showChat && (
             <div className="flex flex-col items-start w-full h-full justify-center">
-              <h1
-                className="text-8xl font-bold ml-6 p-2"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(to right, #F27BBD, #C65BCF, #874CCC, #10439F)",
-                  WebkitBackgroundClip: "text",
-                  color: "transparent",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                THE ARTE CLINIC
-              </h1>
-              <h2 className="text-2xl font-medium text-gray-600 ml-6 mt-4">
-                Take Control of Your Health
-              </h2>
+              <h1 className="text-8xl font-bold text-gray-800 ml-6">THE ARTE <br /> CLINIC</h1>
+              <h2 className="text-2xl font-medium text-gray-600 ml-6 mt-4">Take Control of Your Health</h2>
               <p className="text-base text-gray-800 ml-6 mt-4">
-                This chatbot is here to answer your questions <br /> and
-                provide helpful resources.
+                This chatbot is here to answer your questions  <br /> and provide helpful resources.
               </p>
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-8 ml-6"
@@ -91,33 +66,26 @@ export default function Home() {
               </button>
             </div>
           )}
-
           {/* The new image div */}
-          <div className="absolute right-8 bottom-8">
-            <img
-              src="/kani.png" // IMAGE SA NURSE
-              alt="Cartoon Nurse"
-              className="w-40 h-40 rounded-2xl"
-            />
+          <div className="absolute right-8 bottom-8 flex items-center">
+            <img src="/kani.png" alt="Cartoon Nurse" className="w-100 h-100 rounded-2xl" />
           </div>
 
           {showChat && (
             <>
               {history.length > 0 && (
-                <div className="w-full mb-4 space-y-4 relative">
+                <div className="w-full mb-4 space-y-4 relative"> {/* Added relative to position the icon */}
                   {history.map((message, index) => (
                     <div
                       key={index}
-                      className={`flex w-full mb-2 ${
-                        message.role === "user" ? "justify-end" : "justify-start"
-                      }`}
+                      className={`flex w-full mb-2 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       {/* User Message with Icon */}
-                      {message.role === "user" && (
-                        <div className="relative">
+                      {message.role === 'user' && (
+                        <div className="relative"> {/* Added relative to position the icon */}
                           <div
                             className={`p-4 rounded-lg  bg-blue-500 text-white text-right`}
-                            style={{ maxWidth: "70%" }}
+                            style={{ maxWidth: '70%' }}
                           >
                             <div>
                               <ReactMarkdown rehypePlugins={[rehypeRaw]}>
@@ -130,12 +98,12 @@ export default function Home() {
                       )}
 
                       {/* Model Message */}
-                      {message.role !== "user" && (
-                        <div className="flex">
-                          <div className="h-6 w-6 mt-4 ml-2 text-gray-500" />
+                      {message.role !== 'user' && (
+                        <div className="flex"> {/* Use flexbox to align icon and message */}
+                          <div className="h-6 w-6 mt-4 ml-2 text-gray-500" /> {/* Icon on the left */}
                           <div
                             className={`p-4 rounded-lg bg-gray-100`}
-                            style={{ maxWidth: "70%" }}
+                            style={{ maxWidth: '70%' }}
                           >
                             <div>
                               <ReactMarkdown rehypePlugins={[rehypeRaw]}>
