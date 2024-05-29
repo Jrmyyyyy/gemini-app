@@ -52,13 +52,13 @@ export default function Home() {
         className="flex flex-col items-center w-full h-full overflow-hidden bg-white shadow-md rounded-lg"
         style={{
           backgroundImage: showChat
-            ? "url('/clinic.jpg')" 
-            : "url('/kani.png')", 
+            ? "url('/clinic.jpg')"
+            : "url('/kani.png')",
           backgroundRepeat: "no-repeat",
-          backgroundSize: "cover", 
+          backgroundSize: "cover",
         }}
       >
-        
+
         <div
           ref={chatContainerRef}
           className="flex-grow w-full overflow-y-auto p-6"
@@ -100,40 +100,38 @@ export default function Home() {
                   {history.map((message, index) => (
                     <div
                       key={index}
-                      className={`flex w-full mb-2 ${
-                        message.role === "user" ? "justify-end" : "justify-start"
-                      }`}
+                      className={`flex w-full mb-2 ${message.role === "user" ? "justify-end" : "justify-start"
+                        }`}
                     >
                       {/* User Message with Icon */}
                       {message.role === "user" && (
                         <div className="relative">
                           <div
-                            className={`p-4 rounded-lg  bg-blue-500 text-white text-right`} /* ILISAN NI JASMIN ARI */
-                            style={{ maxWidth: "70%" }}
+                            className="p-4 rounded-lg bg-blue-500 text-white max-w-[100%] max-h-[100%]"
                           >
-                            <div>
+                            <div className="break-words" style={{ width: "fit-content" }}>
                               <ReactMarkdown rehypePlugins={[rehypeRaw]}>
                                 {message.parts[0].text}
                               </ReactMarkdown>
                             </div>
                           </div>
-                          <div className="h-6 w-6 absolute top-0 right-0 -mt-3 -mr-3 text-white" />
                         </div>
                       )}
 
-                      {/* Model Message */}
-                      {message.role !== "user" && (
+                       {/* Model Message */}
+                       {message.role !== "user" && (
                         <div className="flex">
                           <div className="h-6 w-6 mt-4 ml-2 text-gray-500" />
                           <div
                             className={`p-4 rounded-lg bg-gray-100`}
                             style={{ maxWidth: "70%" }}
                           >
-                            <div>
+                            <div className="break-words" style={{ width: "fit-content" }}>
                               <ReactMarkdown rehypePlugins={[rehypeRaw]}>
                                 {message.parts[0].text}
                               </ReactMarkdown>
                             </div>
+                          
                           </div>
                         </div>
                       )}
