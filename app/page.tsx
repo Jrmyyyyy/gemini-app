@@ -104,6 +104,7 @@ export default function Home() {
                         }`}
                     >
                       {/* User Message with Icon */}
+                      {/* User Message with Icon */}
                       {message.role === "user" && (
                         <div className="relative">
                           <div

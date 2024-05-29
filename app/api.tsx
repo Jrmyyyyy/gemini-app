@@ -69,6 +69,7 @@ const runModel = async (userInput: string, History: { role: string; parts: { tex
     const text = await response.text();
 
     // Handle the response text here
+    // Handle the response text here
     // For example, you could update the History state or handle the response data in some other way
   } catch (error) {
     console.error("There's an error while running your model:", error);
