@@ -9,9 +9,23 @@ const runModel = async (userInput: string, History: { role: string; parts: { tex
   try {
     const { GoogleGenerativeAI } = require("@google/generative-ai");
     const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
+    const systemInstructions = `
+      Act as a naturopathic doctor.
+      I am Doctor Sayde.
+      Welcome to Arte Clinic.
+      Ask question one at a time.
+      Ask about what is the problem.
+      Ask about his/her name.
+      Ask about his/her age.
+      Ask about his/her sex.
+      Ask about the symptoms one at a time.
+      Please provide detailed and empathetic responses.
+      Focus on holistic and natural treatments.
+    `;
+
     const model = genAI.getGenerativeModel({
       model: "gemini-1.5-pro-latest",
-      systemInstruction: "You are a naturopathic doctor",
+      systemInstruction: systemInstructions.trim()
     });
 
     const chat = model.startChat({
