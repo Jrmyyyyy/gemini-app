@@ -9,8 +9,10 @@ export default function Home() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [userInput, setUserInput] = useState("");
   const [History] = useState<
-    { role: string; parts: 
-    { text: string }[] }[]
+    {
+      role: string; parts:
+      { text: string }[]
+    }[]
   >([]);
 
   const handleRun = () => {
@@ -18,20 +20,10 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <div style={{ position: 'fixed', bottom: '20px', left: '50%', transform: 'translateX(-50%)', width: '90%', maxWidth: '600px' }}>
-        <textarea
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-          placeholder="Enter your message"
-          style={{ width: '100%', height: '50px', padding: '10px', borderRadius: '8px', resize: 'none' }}
-        />
-        <button onClick={handleRun} disabled={isGenerating} style={{ marginLeft: '10px', padding: '8px 16px', borderRadius: '8px', backgroundColor: '#007bff', color: '#fff', border: 'none', cursor: 'pointer' }}>
-          {isGenerating ? "..." : "Submit"}
-        </button>
-      </div>
+    <div className="flex items-center flex-col gap-y-5 border mx-[20%] lg:border-yellow-200 md:border-red-200">
 
-      <div style={{ padding: '20px', marginTop: '80px' }}>
+      <div className="border">
+        j
         {History.map((message, index) => (
           <div key={index}>
             <h3 style={{ color: 'black' }}>{message.role}</h3>
@@ -43,6 +35,20 @@ export default function Home() {
           </div>
         ))}
       </div>
+
+      <div className="flex">
+        <textarea
+          className=""
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+          placeholder="Enter your message"
+        />
+        <button className="bg-[#000] text-white p-5 rounded-full w-[70%] py-3" onClick={handleRun} disabled={isGenerating}>
+          {isGenerating ? "..." : "Submit"}
+        </button>
+      </div>
+
+
     </div>
   );
 }

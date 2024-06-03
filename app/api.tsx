@@ -18,7 +18,7 @@ const runModel = async (userInput: string, History: { role: string; parts: { tex
       history: History,
     });
 
-    const result = await chat.sendMessage(userInput);
+    const result = await chat.sendMessage(userInput);``
     const response = await result.response;
     const text = await response.text();
 
