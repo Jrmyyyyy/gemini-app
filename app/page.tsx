@@ -53,37 +53,67 @@ export default function Home() {
         <div ref={chatContainerRef} className="flex-grow w-full overflow-y-auto p-6">
           {!showChat && (
             <div className="flex flex-col items-start w-full h-full justify-center">
-              <h1 className="text-4xl font-bold text-gray-800 ml-6">THE ARTE CLINIC</h1>
-              <p className="text-sm text-gray-600 ml-6 mt-4">A small description about the Arte Clinic.</p>
+              <h1 className="text-8xl font-bold text-gray-800 ml-6">THE ARTE <br /> CLINIC</h1>
+              <h2 className="text-2xl font-medium text-gray-600 ml-6 mt-4">Take Control of Your Health</h2>
+              <p className="text-base text-gray-800 ml-6 mt-4">
+                This chatbot is here to answer your questions  <br /> and provide helpful resources.
+              </p>
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8 ml-6"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-8 ml-6"
                 onClick={handleStartChat}
               >
                 Start Chat
               </button>
             </div>
           )}
+          {/* The new image div */}
+          <div className="absolute right-8 bottom-8">
+            <img src="/cartoon-nurse.jpg.jpg" alt="Cartoon Nurse" className="w-40 h-40 rounded-2xl" />
+          </div>
+
 
           {showChat && (
             <>
               {history.length > 0 && (
-                <div className="w-full mb-4 space-y-4">
+                <div className="w-full mb-4 space-y-4 relative"> {/* Added relative to position the icon */}
                   {history.map((message, index) => (
                     <div
                       key={index}
                       className={`flex w-full mb-2 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
-                      <div
-                        className={`p-4 rounded-lg  ${message.role === 'user' ? 'bg-blue-500 text-white text-right' : 'bg-gray-100'}`}
-                        style={{ maxWidth: '70%' }}
-                      >
-                        <h3 className="font-bold">{message.role === 'user' ? 'You' : 'Model'}</h3>
-                        <div className="mt-2">
-                          <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-                            {message.parts[0].text}
-                          </ReactMarkdown>
+                      {/* User Message with Icon */}
+                      {message.role === 'user' && (
+                        <div className="relative"> {/* Added relative to position the icon */}
+                          <div
+                            className={`p-4 rounded-lg  bg-blue-500 text-white text-right`}
+                            style={{ maxWidth: '70%' }}
+                          >
+                            <div>
+                              <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                                {message.parts[0].text}
+                              </ReactMarkdown>
+                            </div>
+                          </div>
+                          <div className="h-6 w-6 absolute top-0 right-0 -mt-3 -mr-3 text-white" />
                         </div>
-                      </div>
+                      )}
+
+                      {/* Model Message */}
+                      {message.role !== 'user' && (
+                        <div className="flex"> {/* Use flexbox to align icon and message */}
+                          <div className="h-6 w-6 mt-4 ml-2 text-gray-500" /> {/* Icon on the left */}
+                          <div
+                            className={`p-4 rounded-lg bg-gray-100`}
+                            style={{ maxWidth: '70%' }}
+                          >
+                            <div>
+                              <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                                {message.parts[0].text}
+                              </ReactMarkdown>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
