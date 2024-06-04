@@ -67,10 +67,9 @@ export default function Home() {
             </div>
           )}
           {/* The new image div */}
-          <div className="absolute right-8 bottom-8">
-            <img src="/cartoon-nurse.jpg.jpg" alt="Cartoon Nurse" className="w-40 h-40 rounded-2xl" />
+          <div className="absolute right-8 bottom-8 flex items-center">
+            <img src="/kani.png" alt="Cartoon Nurse" className="w-100 h-100 rounded-2xl" />
           </div>
-
 
           {showChat && (
             <>
